@@ -66,9 +66,9 @@
   <div class="d-flex justify-content-center container">
     <div class="w-75 mt-100">
       <form @submit.prevent="!selectedTodo ? addTodo() : updateTodo()"> <!-- Form for adding or updating a todo -->
-        <div class="mb-3mt-5">
+        <div class="mb-3 mt-5">
           <label for="todo">What's your todo?</label>
-          <div class="d-flex">
+          <div class="d-flex mt-2">
             <input v-model="todo" type="text" class="form-control" id="todo" placeholder="eg. Create todo application"> <!-- Input field for entering the todo text -->
             <button v-if="!selectedTodo" class="btn btn-primary ms-3"><i class="bi bi-plus-circle"></i></button> <!-- Button for adding a new todo -->
             <button v-else="" class="btn btn-primary ms-3"><i class="bi bi-pencil-square"></i></button> <!-- Button for editing an existing todo -->
