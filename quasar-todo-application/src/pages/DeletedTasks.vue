@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+    import { DeletedTasks } from "../composables/Tasks";
+</script>
 
 <template>
     <div class="flex justify-center">

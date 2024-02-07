@@ -1,5 +1,6 @@
 <script setup>
     import { ref } from "vue";
+    import { MyTasks } from "../composables/Tasks";
     
     let text = ref(null);
 </script>
