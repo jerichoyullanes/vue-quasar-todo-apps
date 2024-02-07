@@ -1,10 +1,5 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
+  <q-item clickable :to="route_name">
     <q-item-section
       v-if="icon"
       avatar
@@ -35,10 +30,11 @@ export default defineComponent({
       default: ''
     },
 
-    link: {
+    route_name: {
       type: String,
-      default: '#'
+      default: "#",
     },
+
 
     icon: {
       type: String,
