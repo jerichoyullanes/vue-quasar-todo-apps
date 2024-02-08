@@ -9,6 +9,7 @@
         <div class="q-mt-xl">
           <q-card v-for="row in DeletedTasks" :key="row.id" class="q-mt-sm">
             <q-card-section class="bg-primary text-white q-pa-none">
+              <!-- Display Deleted Todo List Rows -->
               <div class="text-bold q-pa-md">{{ row.todo }}</div>
             </q-card-section>
           </q-card>

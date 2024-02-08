@@ -1,11 +1,12 @@
 <script setup>
-    import { ref } from "vue";
+    import { ref } from "vue"; 
     import { MyTasks, FinishedTasks, DeletedTasks } from "../composables/Tasks";
 
-    
+    // Initialized reactive variables for inputs
     let text = ref(null);
     let form = ref(null);
 
+    // Add Function
     const addTodo = () => {
         let id = MyTasks.value.length;
         MyTasks.value.push({
@@ -17,12 +18,14 @@
         form.value.reset();
     };
 
+    // Select Function
     let selectedTodo = ref(null);
     const selectTodo = (row) => {
         selectedTodo.value = row;
         text.value = row.todo;
     };
 
+    // Update Function
     const updateTodo = () => {
         let index = MyTasks.value.findIndex((t) => t.id === selectedTodo.value.id);
         index !== -1 && (MyTasks.value[index].todo = text.value);
@@ -30,6 +33,7 @@
         form.value.reset();
     };
 
+    // Show Dialog Function
     let showDialog = ref(false);
     const toggleDialog = (row, status) => {
         showDialog.value = true;
@@ -37,6 +41,7 @@
         status !== "delete" ? (toMarkAsDone.value = row) : (toDelete.value = row);
     };
 
+    // Mark As Done Function
     let toMarkAsDone = ref(null);
     const markAsDone = () => {
         let index = MyTasks.value.findIndex((t) => t.id === toMarkAsDone.value.id);
@@ -46,6 +51,7 @@
         showDialog.value = false;
     };
 
+    // Delete Function
     let toDelete = ref(null);
     const removeTodo = () => {
         let index = MyTasks.value.findIndex((t) => t.id === toDelete.value.id);
@@ -73,6 +79,7 @@
               lazy-rules
               :rules="[(val) => !!val || 'Field is required']"
             />
+            <!-- TODO INPUT BUTTONS -->
             <div class="col-2 q-pl-sm">
               <q-btn 
                 :class="`bg-${!selectedTodo ? 'primary' : 'secondary'} fit`"
@@ -93,6 +100,7 @@
                 <q-card-section :class="`bg-${selectedTodo && selectedTodo.id === row.id ? 'secondary' : 'primary'} text-white q-pa-none flex justify-between items-center`">
                     <div class="text-bold q-pl-lg">{{ row.todo }}</div>
                     <div class="bg-white q-pa-sm">
+                        <!-- TODO LIST ROWS BUTTONS -->
                         <q-btn 
                             @click.stop="toggleDialog(row, 'mark-done')" 
                             flat 
@@ -126,6 +134,7 @@
             </div>
           </q-card-section>
 
+          <!-- DIALOG BUTTONS -->
           <q-card-actions align="right">
             <q-btn flat label="Cancel" color="primary" v-close-popup />
             <q-btn

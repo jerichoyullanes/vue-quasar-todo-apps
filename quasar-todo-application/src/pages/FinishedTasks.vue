@@ -9,7 +9,8 @@
         <div class="q-mt-xl">
           <q-card v-for="row in FinishedTasks" :key="row.id" class="q-mt-sm">
             <q-card-section class="bg-primary text-white q-pa-none">
-              <div class="text-bold q-pa-md">{{ row.todo }}</div>
+                <!-- Display Finished Todo List Rows -->
+              <div class="text-bold q-pa-md">{{ row.todo }}</div> 
             </q-card-section>
           </q-card>
         </div>
