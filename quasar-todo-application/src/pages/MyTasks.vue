@@ -78,8 +78,9 @@
               class="q-pa-none col-10"
               lazy-rules
               :rules="[(val) => !!val || 'Field is required']"
+              @keydown.enter.prevent="!selectedTodo ? addTodo() : updateTodo()" 
             />
-            <!-- TODO INPUT BUTTONS -->
+            <!-- TODO INPUT BUTTON -->
             <div class="col-2 q-pl-sm">
               <q-btn 
                 :class="`bg-${!selectedTodo ? 'primary' : 'secondary'} fit`"
