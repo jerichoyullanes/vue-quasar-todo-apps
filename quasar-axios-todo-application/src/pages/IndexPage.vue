@@ -1,11 +1,14 @@
 <template>
 
   <!-- FORM -->
-  <q-form @submit="!selectedRow.id ? addTodo() : updateTodo()"  class="q-ma-md">
+  <q-form @submit="!selectedRow.id ? addTodo() : updateTodo()"  class="q-ma-xl">
     <q-input 
       v-model="form.title" 
       label="Input Field" 
+      lazy-rules
+      :rules="[(val) => !!val || 'Field is required']"
     />
+    <!-- Form Buttons -->
     <q-btn 
       :loading="btnLoadingState"
       type="submit" 
@@ -92,12 +95,14 @@
         });
       };
 
-      // UPDATE Todo Function
+      // SELECT Todo Function
       let selectedRow = ref({});
       const onRowClick = (evt, row) => {
         selectedRow.value = row;
         form.value.title = row.title;
       };
+
+      // UPDATE Todo Function
       const updateTodo = () => {
         btnLoadingState.value = true;
         axios
@@ -107,7 +112,7 @@
         })
         .then((response) => {
           if (response.status === 200) {
-            let index = rows.value.findIndex((row) => row.id === selectedRow.value.id);
+            let index = rows.value.findIndex((row) => row.id == selectedRow.value.id);
             rows.value[index].title = response.data.title;
             form.value.title = null;
             selectedRow.value = {};
@@ -126,6 +131,7 @@
             if (response.status === 200) {
               rows.value = rows.value.filter((row) => row.id !== selectedRow.value.id);
               form.value.title = null;
+              selectedRow.value = {};
             }
             deleteBtnLoadingState.value = false;
           });
